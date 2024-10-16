@@ -1,7 +1,3 @@
-Below is a comprehensive documentation of your project, including the functionality and interpretation of the images produced when the code is executed.
-
----
-
 # **Sickle Cell Anemia Detection System**
 
 ## **Overview**

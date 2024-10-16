@@ -1,6 +1,3 @@
-Here’s a **README** file based on the code provided and the installation instructions:
-
----
 
 # Sickle Cell Anemia Detection
 
