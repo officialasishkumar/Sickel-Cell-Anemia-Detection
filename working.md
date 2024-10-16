@@ -112,7 +112,3 @@ Percent Healthy: 91.67%
 ## **Conclusion**
 
 This project provides a comprehensive solution for detecting and classifying sickle cells from blood smear images. With its multiple visual outputs and automated classification, it offers a valuable tool for medical professionals working on **Sickle Cell Disease** diagnosis. The 3D scatter plot provides further insights into the distribution of cells based on shape properties, making it a powerful visualization tool for researchers.
-
----
-
-This documentation covers the entire project functionality, including how to install, use, and interpret the results. Let me know if you need any more customization!
