@@ -109,6 +109,116 @@ Percent Healthy: 91.67%
 4. **Visualization:** Four images are generated to assist in verifying the analysis.
 
 
-## **Conclusion**
+## **Code explanation**
 
-This project provides a comprehensive solution for detecting and classifying sickle cells from blood smear images. With its multiple visual outputs and automated classification, it offers a valuable tool for medical professionals working on **Sickle Cell Disease** diagnosis. The 3D scatter plot provides further insights into the distribution of cells based on shape properties, making it a powerful visualization tool for researchers.
+## **1. main.py**
+
+This is the **entry point** of the application.
+
+### **Logic Flow:**
+1. **Image Loading and Preprocessing:**
+   - Calls `image_prep()` from `FeatureExtraction.py` to load and preprocess the input image.
+   - This function converts the image to grayscale and applies segmentation to detect individual cells.
+
+2. **Feature Extraction:**
+   - After segmentation, the `findperimeter()` function is called to compute the **perimeter** for each detected cell.
+   - Calculates other properties such as **area** and **circularity** from the segmented cells.
+
+3. **Cell Classification:**
+   - Uses the `KNNClassifier()` function from `Classify.py` to classify cells as either **healthy or sickle** based on extracted features (area, perimeter, and circularity).
+
+4. **Visualization and Output:**
+   - Plots four different figures:
+     - Original image (as a reference)
+     - Preprocessed image (segmented with different colors for each cell)
+     - Highlighted classified sickle cells (colored yellow)
+     - 3D scatter plot with area, perimeter, and circularity on the axes
+   - Outputs statistics about the total cells, sickle cells, and healthy cells, along with their percentages.
+
+---
+
+## **2. FeatureExtraction.py**
+
+This module is responsible for **preprocessing** the image and extracting features like **area, perimeter**, and **circularity**.
+
+### **Functions:**
+- **`image_prep(path)`**:
+  - Loads the image from the provided path.
+  - Converts the image to grayscale.
+  - Applies **Canny edge detection** to identify the boundaries of cells.
+  - Fills holes in the segmented objects to properly label individual cells.
+
+- **`numofneighbour(mat, i, j, searchValue)`**:
+  - A helper function to count the **number of neighboring pixels** with a given value.
+  - Used during segmentation to help identify the extent of each cell.
+
+- **`findperimeter(mat, num_features)`**:
+  - Computes the **perimeter** of each labeled cell.
+  - Iterates over the matrix to calculate how many boundary pixels each cell has.
+
+---
+
+## **3. Classify.py**
+
+This file handles the **classification logic** using a **K-Nearest Neighbors (KNN)** approach.
+
+### **Functions:**
+- **`KNNClassifier()`**:
+  - Takes in a dataset containing features (area, perimeter, circularity) and corresponding labels (1 for sickle, 0 for healthy).
+  - Uses the **KNN algorithm** to classify the input cells based on their features.
+  - The number of neighbors used in KNN can be fine-tuned (default is usually 3-5 neighbors).
+
+### **How It Works:**
+1. For every cell detected in the input image, the function **extracts area, perimeter, and circularity**.
+2. The KNN classifier compares these features with the preloaded dataset of healthy and sickle cells.
+3. It assigns the label based on the closest neighbors.
+
+---
+
+## **4. LabelledData.py**
+
+This module **stores labeled data** for training the KNN classifier.
+
+### **Functionality:**
+- Contains **datasets** of features from both sickle and healthy cells.
+- These datasets are used to **train the KNN classifier** when the code runs.
+- The labeled data helps the classifier identify which cells are healthy or sickle by comparing feature similarities.
+
+---
+
+## **5. Tools.py**
+
+Contains **utility functions** that assist with data normalization and manipulation.
+
+### **Functions:**
+- **`convert_to_relative(value, max_value)`**:
+  - Normalizes a given feature value (like area or perimeter) by dividing it by the **maximum value**.
+  - Ensures that features are scaled properly to prevent any bias during classification.
+
+- **Other Helper Functions:**
+  - May include functions for calculating distances, managing datasets, or manipulating images before passing them to the classifiers.
+
+---
+
+## **How the Code Works Together:**
+
+1. **Image Input:**  
+   - The `main.py` script accepts an image path, loads it using `image_prep()` from `FeatureExtraction.py`.
+
+2. **Segmentation and Feature Extraction:**  
+   - The image is converted to grayscale, and cells are segmented.  
+   - Features like **area, perimeter**, and **circularity** are computed for each segmented cell.
+
+3. **Classification:**  
+   - The extracted features are passed to `KNNClassifier()` in `Classify.py` for classification.
+   - The classifier labels cells as **sickle (1)** or **healthy (0)**.
+
+4. **Visualization:**  
+   - Four visualizations are generated to display the results:
+     1. Original Image
+     2. Preprocessed Image
+     3. Highlighted sickle cells
+     4. 3D scatter plot showing cell distributions based on features.
+
+5. **Result Output:**  
+   - The results are printed to the terminal, showing the total number of cells, sickle cells, healthy cells, and their respective percentages.
