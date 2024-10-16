@@ -49,7 +49,7 @@ python3 src/main.py <path-to-image>
 ### Example:
 
 ```bash
-python3 src/main.py /path/to/image/sickle4.jpg
+python3 src/main.py image/sickle4.jpg        
 ```
 
 #### Output:
