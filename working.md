@@ -32,7 +32,7 @@ This command triggers a series of operations, including image processing, classi
 Here is a breakdown of the **four visual outputs** generated when you run the code:
 
 ### 1. **Original Image**
-![Original Image](image.png)
+![Original Image](doc-image/original-image.png)
 
 - **Description:** This is the unprocessed input image of red blood cells as captured from the microscope.
 - **Purpose:** Provides a baseline to visually inspect the raw state of the cells before further processing.
@@ -41,7 +41,7 @@ Here is a breakdown of the **four visual outputs** generated when you run the co
 ---
 
 ### 2. **Preprocessed Image**
-![Preprocessed Image](image.png)
+![Preprocessed Image](doc-image/prepped-image.png)
 
 - **Description:** This image shows the result of the preprocessing stage, where individual cells are segmented and labeled with different colors.
 - **Purpose:** Helps ensure that the segmentation process is working correctly by visually separating individual cells.
@@ -50,7 +50,7 @@ Here is a breakdown of the **four visual outputs** generated when you run the co
 ---
 
 ### 3. **Classified Image**
-![Classified Image](image.png)
+![Classified Image](doc-image/classified-image.png)
 
 - **Description:** This image highlights only the **classified sickle cell(s)** in bright yellow, distinguishing them from other cells.
 - **Purpose:** Provides a focused view of detected sickle cells to verify the classification accuracy.
@@ -59,7 +59,7 @@ Here is a breakdown of the **four visual outputs** generated when you run the co
 ---
 
 ### 4. **3D Scatter Plot (Classified Graph)**
-![3D Scatter Plot](image.png)
+![3D Scatter Plot](doc-image/classified-graph.png)
 
 - **Axes:**
   - **X-Axis:** Area of the cell
