@@ -14,6 +14,7 @@ setup(
         "opencv-python",
         "numpy",
         "scikit-image",
+        "scikit-learn",
         "pillow",
         "scipy"
     ]
